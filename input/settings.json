@@ -1,0 +1,9 @@
+{
+    "currentWeekNo": 0,
+
+    "rowShiftCycle": 2,
+    "rowShiftDuration": 2,
+
+    "groupShiftCycle": 1,
+    "groupShiftDuration": 1
+}
