@@ -6,6 +6,7 @@ If your classroom's seats are constantly changing in a specific pattern, this pr
 * Run the __main.py__ file located in the project's root directory.
 * Choose either [*Cycle Mode*](#3-what-is-the-cycle-mode) or [*Initialize Mode*](#2-what-is-the-initialize-mode).
 * Confirm the datas and press *Enter* to execute.
+* After either using the Initialize Mode or Cycle Mode, the script will generate an `output.html` file. Open the file in your browser and use the built-in print function to print out the classroom's diagram.
 
 ## 2. What is the *Initialize Mode?*
 For first time user, using *Initialize Mode* is forced. **Initialize Mode** will generate a reusable version of the input diagram for the program to use again when got executed again. This features is use when you are the *first time user*, *class layout changed completely* or *missing diagram for the programs*.
