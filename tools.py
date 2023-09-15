@@ -91,7 +91,8 @@ def dictToRawList(inDict: dict) -> list:
 
 def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
                 groupShiftDuration: int, rowShiftDuration: int,
-                filteredList: list, isInitial: bool) -> list:
+                filteredList: list, isInitial: bool, rowOffset: bool,
+                groupOffset: bool) -> list:
 
     outputList = filteredList.copy()
 
@@ -99,14 +100,26 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
         if weekCount == 0:
             return outputList
         for weekCycle in range(weekCount):
+            if weekCycle == 1:
+                continue
             # Perform rowShift
-            if weekCount % rowShiftDuration == 0:
+            if weekCount % rowShiftDuration == 0 and not rowOffset:
+                tempList = (outputList[-rowShiftCycle:]
+                            + outputList[:-rowShiftCycle])
+                outputList = tempList.copy()
+            elif weekCount % rowShiftDuration == 1 and rowOffset:
                 tempList = (outputList[-rowShiftCycle:]
                             + outputList[:-rowShiftCycle])
                 outputList = tempList.copy()
 
             # Perform groupShift
-            if weekCount % groupShiftDuration == 0:
+            if weekCount % groupShiftDuration == 0 and not groupOffset:
+                tempList = []
+                for row in outputList:
+                    tempList.append(row[groupShiftCycle:]
+                                    + row[:groupShiftCycle])
+                outputList = tempList.copy()
+            elif weekCount % groupShiftDuration == 1 and groupOffset:
                 tempList = []
                 for row in outputList:
                     tempList.append(row[groupShiftCycle:]
@@ -129,7 +142,7 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
     return outputList
 
 
-def write_html(tbl_arrange: dict) -> None:
+def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str) -> None:
     outputStr = ""
     HEAD_SECTION = r'<html><head><link rel="stylesheet" href="print.css"><link rel="stylesheet" media="print" href="print.css"></head><body class="grid">'
     body = ""
@@ -145,10 +158,10 @@ def write_html(tbl_arrange: dict) -> None:
                 body += f'<div>{tbl_arrange[rows][seatSet][seat]}</div>'
             body += "</div>"
         if rows == max(list(tbl_arrange.keys())):
-            body += r'<p class="bgv">Bàn giáo viên</p></div>'
+            body += rf'<p class="bgv">{teachersTable}</p></div>'
             continue
         elif rows == 0:
-            body += r'<p class="cl">Cửa lớp</p></div>'
+            body += rf'<p class="cl">{classEntrance}</p></div>'
         body += r'</div>'
     outputStr = HEAD_SECTION + body + END_SECTION
     with open("output.html", "w", encoding="UTF-8") as f_out:

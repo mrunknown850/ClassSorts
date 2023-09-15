@@ -1,5 +1,6 @@
 __pycache__
 .vscode
 input/saved_info.json
-input/test.txt
+input/input_layout.txt
 ClassSorts.zip
+output.html

@@ -1,41 +1,52 @@
 import tools
 
 
-def main():
+def main(isInitial: bool):
     # ----- READING STAGE -----
     # Read the internal config.
     internal_config = tools.readConfig()
     user_config = tools.readSettings()
 
-    print("MODE: "+"INITIALIZE" if internal_config["isInitial"] else "CYCLE")
-    print(f'CURRENT WEEK: {internal_config["currentWeek"]}')
-    input('Continue? Press Enter to continue... ')
-
     # _____ EXECUTING _____
-    if internal_config["isInitial"]:
-        # First Time User
-        internal_config["isInitial"] = False
+    if isInitial:
+        print("CHOSEN MODE: INITIALIZE")
+        print(f'Initialize from Week {user_config["currentWeekNo"]}')
+        input("Press enter to continue...")
 
+        # First Time User
+        isInitial = False
+
+        print("===== EXECUTION =====")
         # Start action
         print("Loading datas")
-        initialList = tools.file_readers(r'input\test.txt')
+        initialList = tools.file_readers(r'input\input_layout.txt',
+                                         user_config["seperationChar"])
         initialList = tools.sortingAlgo(user_config["currentWeekNo"],
                                         user_config["rowShiftCycle"],
                                         user_config["groupShiftCycle"],
                                         user_config["groupShiftDuration"],
                                         user_config["rowShiftDuration"],
-                                        initialList, True)
+                                        initialList, True,
+                                        user_config["rowDurationOffset"],
+                                        user_config["groupDurationOffset"])
         genDict = tools.rawListToDict(initialList)
 
         print("Generating HTML...")
-        tools.write_html(genDict)
+        tools.write_html(genDict, user_config["classEntranceTitle"],
+                         user_config["teachersTableTitle"])
 
         # Save Info
         tools.saveData(genDict)
 
-        internal_config["currentWeek"] = user_config["currentWeekNo"] + 1
+        internal_config["currentWeek"] = user_config["currentWeekNo"]
         tools.writeConfig(internal_config)
     else:
+        print("CHOSEN MODE: CYCLE")
+        print(f'Currently Week {internal_config["currentWeek"]}')
+        print(f'Generating Week {internal_config["currentWeek"]+1}')
+        input("Press Enter to continue... ")
+
+        print("===== EXECUTION =====")
         print("Loading datas")
         initialList = tools.dictToRawList(tools.readData())
         # print(initialList)
@@ -44,12 +55,15 @@ def main():
                                         user_config['groupShiftCycle'],
                                         user_config['groupShiftDuration'],
                                         user_config['rowShiftDuration'],
-                                        initialList, False)
+                                        initialList, False,
+                                        user_config["rowDurationOffset"],
+                                        user_config["groupDurationOffset"])
         genDict = tools.rawListToDict(initialList)
         # print(initialList)
 
         print("Generating HTML...")
-        tools.write_html(genDict)
+        tools.write_html(genDict, user_config["classEntranceTitle"],
+                         user_config["teachersTableTitle"])
 
         # Save Info
         tools.saveData(genDict)
@@ -59,4 +73,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("======== Class Seat Sorters ========")
+    print("Choose your mode:")
+    print("I - INITIALIZE MODE")
+    print("C - CYCLE MODE")
+    option = input("Enter your option: ")
+    while option not in ["I", "C"]:
+        option = input("Enter your option: ")
+    main(False if option == "C" else True)
