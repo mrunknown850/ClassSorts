@@ -1,6 +1,9 @@
 __pycache__
 .vscode
+temp
 input/saved_info.json
 input/input_layout.txt
+ClassSorts*.*.zip
 ClassSorts.zip
 output.html
+.gitignore

@@ -13,7 +13,7 @@ def saveData(groupingData: dict) -> None:
 
 def readSettings() -> dict:
     settingDict = {}
-    with open(r'input\settings.json', 'r') as f:
+    with open(r'input\settings.json', 'r', encoding="UTF-8") as f:
         settingDict = json.loads(f.read())
     return settingDict
 
@@ -142,7 +142,8 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
     return outputList
 
 
-def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str) -> None:
+def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
+               i=None) -> None:
     outputStr = ""
     HEAD_SECTION = r'<html><head><link rel="stylesheet" href="print.css"><link rel="stylesheet" media="print" href="print.css"></head><body class="grid">'
     body = ""
@@ -164,5 +165,5 @@ def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str) -> Non
             body += rf'<p class="cl">{classEntrance}</p></div>'
         body += r'</div>'
     outputStr = HEAD_SECTION + body + END_SECTION
-    with open("output.html", "w", encoding="UTF-8") as f_out:
+    with open(f'{"output" if i == None else i}.html', "w", encoding="UTF-8") as f_out:
         f_out.write(outputStr)

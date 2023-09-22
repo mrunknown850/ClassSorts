@@ -1,7 +1,7 @@
 import tools
 
 
-def main(isInitial: bool):
+def main(isInitial: bool, i: int = 1):
     # ----- READING STAGE -----
     # Read the internal config.
     internal_config = tools.readConfig()
@@ -63,7 +63,7 @@ def main(isInitial: bool):
 
         print("Generating HTML...")
         tools.write_html(genDict, user_config["classEntranceTitle"],
-                         user_config["teachersTableTitle"])
+                         user_config["teachersTableTitle"], i)
 
         # Save Info
         tools.saveData(genDict)
@@ -77,7 +77,13 @@ if __name__ == "__main__":
     print("Choose your mode:")
     print("I - INITIALIZE MODE")
     print("C - CYCLE MODE")
+
+    # Loop for pre-generate
+    # for i in range(1, 102):
+    #     main(False, i)
+
     option = input("Enter your option: ")
     while option not in ["I", "C"]:
         option = input("Enter your option: ")
+
     main(False if option == "C" else True)
