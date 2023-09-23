@@ -1,0 +1,88 @@
+* {
+    font-family: "Open Sans";
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    display: block;
+    font-weight: lighter;
+    font-size: 2.5em;
+}
+
+h3 {
+    font-weight: 100;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+    margin: auto auto 0.5em 0.5em;
+}
+
+.file-upload {
+    border-radius: 3px;
+    background-color: lightblue;
+
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.file-upload:hover {
+    background-color: rgb(111, 167, 185);
+}
+
+.pagetop {
+    margin: 0;
+    padding: 10vh;
+    text-align: center;
+    background-color: lightblue;
+}
+
+#fileUp {
+    grid-area: fileUp;
+}
+
+#weekNum {
+    grid-area: weekNum;
+}
+
+#rowCycle {
+    grid-area: rowCycle;
+}
+
+#rowDur {
+    grid-area: rowDur;
+}
+
+#groupCycle {
+    grid-area: groupCycle;
+}
+
+#groupDur {
+    grid-area: groupDur;
+}
+
+#classT {
+    grid-area: classT;
+}
+
+#teachT {
+    grid-area: teachT;
+}
+
+#sepChar {
+    grid-area: sepChar;
+}
+
+.options {
+    display: grid;
+    grid-template-areas:
+        "weekNum rowCycle groupCycle"
+        "sepChar rowDur groupDur"
+        "classT rowOff groupOff"
+        "teachT fileUp subBtn";
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <div class="pagetop">
+        <h1>ClassSorts for Web</h1>
+        <h3>by MrUnknown850</h3>
+    </div>
+    <form action="\process" method="post" class="options">
+        <label class="file-upload" id="fileUp">
+            <input type="file">
+            Upload your template
+        </label>
+
+        <label id="weekNum">
+            <p>Week Num:</p>
+            <input type="text" name="">
+        </label>
+        <label id="rowCycle">
+            <p>Row Cycle:</p>
+            <input type="text" name="">
+        </label>
+        <label id="groupCycle">
+            <p>Group Cycle:</p>
+            <input type="text" name="">
+        </label>
+        <label id="sepChar">
+            <p>Seperation Charactor:</p>
+            <input type="text" name="">
+        </label>
+        <label id="rowDur">
+            <p>Row Duration:</p>
+            <input type="text" name="">
+        </label>
+        <label id="groupDur">
+            <p>Group Duration:</p>
+            <input type="text" name="">
+        </label>
+        <label id="classT">
+            <p>Class's Door Title:</p>
+            <input type="text" name="">
+        </label>
+        <label id="teachT">
+            <p>Teacher's Table Title:</p>
+            <input type="text" name="">
+        </label>
+    </form>
+</body>
+
+</html>

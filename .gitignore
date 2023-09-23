@@ -7,3 +7,5 @@ ClassSorts*.*.zip
 ClassSorts.zip
 output.html
 .gitignore
+.venv
+.python-version
