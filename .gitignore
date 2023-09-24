@@ -9,3 +9,4 @@ output.html
 .gitignore
 .venv
 .python-version
+test.py

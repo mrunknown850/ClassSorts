@@ -14,45 +14,82 @@
         <h1>ClassSorts for Web</h1>
         <h3>by MrUnknown850</h3>
     </div>
-    <form action="\process" method="post" class="options">
+
+    <form action="\process" method="POST" enctype="multipart/form-data" class="options">
         <label class="file-upload" id="fileUp">
-            <input type="file">
-            Upload your template
+            <input type="file" id="uploadInput" required>
+            <p id="fileLabel">Upload template</p>
         </label>
 
-        <label id="weekNum">
+
+        <div class="opt" id="weekNum">
             <p>Week Num:</p>
-            <input type="text" name="">
-        </label>
-        <label id="rowCycle">
-            <p>Row Cycle:</p>
-            <input type="text" name="">
-        </label>
-        <label id="groupCycle">
-            <p>Group Cycle:</p>
-            <input type="text" name="">
-        </label>
-        <label id="sepChar">
+            <input name="weekNum" type="number" required>
+        </div>
+        <div class="opt" id="sepChar">
             <p>Seperation Charactor:</p>
-            <input type="text" name="">
-        </label>
-        <label id="rowDur">
+            <input type="text" pattern="[A-Za-z0-9]+" required name="sepChar">
+        </div>
+
+
+        <div class="opt" id="rowCycle">
+            <p>Row Cycle:</p>
+            <input type="number" required name="rowCycle">
+        </div>
+        <div class="opt" id="groupCycle">
+            <p>Group Cycle:</p>
+            <input type="number" required name="groupCycle">
+        </div>
+        <div class="opt" id="rowDur">
             <p>Row Duration:</p>
-            <input type="text" name="">
-        </label>
-        <label id="groupDur">
+            <input type="number" required name="rowDur">
+        </div>
+        <div class="opt" id="groupDur">
             <p>Group Duration:</p>
-            <input type="text" name="">
-        </label>
-        <label id="classT">
+            <input type="number" required name="groupDur">
+        </div>
+
+
+        <div class="opt" id="classT">
             <p>Class's Door Title:</p>
-            <input type="text" name="">
-        </label>
-        <label id="teachT">
+            <input type="text" pattern="[A-Za-z0-9]+" required name="classT">
+        </div>
+        <div class="opt" id="teachT">
             <p>Teacher's Table Title:</p>
-            <input type="text" name="">
+            <input type="text" pattern="[A-Za-z0-9]+" required name="teachT">
+        </div>
+
+        <label class="opt" id="rowOff">
+            <p>Row Offset</p>
+            <input type="checkbox" name="rowOff">
         </label>
+        <label class="opt" id="groupOff">
+            <p>Group Offset</p>
+            <input type="checkbox" name="groupOff">
+        </label>
+
+        <div class="opt" id="subBtn">
+            <input type="submit" id="subBtnIn">
+        </div>
     </form>
+    
+    <script>
+        var uploadInput = document.getElementById("uploadInput")
+        var label = document.getElementById("fileLabel")
+        uploadInput.addEventListener("change", function() {
+            var fileName = this.value.split("\\").pop();
+
+            label.textContent = fileName
+        })
+
+        var submitBtn = document.getElementById("subBtnIn")
+        submitBtn.addEventListener("click", function(e) {
+            if (uploadInput.value == "") {
+                alert("Please upload a file")
+                e.preventDefault();
+            }
+        })
+    </script>
 </body>
 
 </html>

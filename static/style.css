@@ -14,25 +14,53 @@ h3 {
     font-weight: 100;
 }
 
-input[type="file"] {
+input[type=submit] {
+    background: #ccc;
+    margin: 0.1em;
+    width: 15vw;
+    height: 6.5vh;
+
+    border: 0 none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    font-size: 1rem;
+}
+
+input[type=submit]:hover {
+    background: #9c9c9c;
+}
+
+input[type=file] {
     display: none;
 }
 
-input[type="text"] {
-    margin: auto auto 0.5em 0.5em;
+input[type=text] {
+    margin: 0.5em;
+    margin-top: 0.25em;
+
+    border: 2px solid #9c9c9c;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .file-upload {
     border-radius: 3px;
-    background-color: lightblue;
+    background-color: #ccc;
 
-    display: inline-block;
-    padding: 6px 12px;
+    /* width: 15vw; */
+
+    margin: 0.65em;
+    padding: 0.1em;
+
+    display: grid;
+    place-items: center;
+
     cursor: pointer;
 }
 
 .file-upload:hover {
-    background-color: rgb(111, 167, 185);
+    background-color: #9c9c9c;
 }
 
 .pagetop {
@@ -41,6 +69,7 @@ input[type="text"] {
     text-align: center;
     background-color: lightblue;
 }
+
 
 #fileUp {
     grid-area: fileUp;
@@ -78,11 +107,62 @@ input[type="text"] {
     grid-area: sepChar;
 }
 
+#groupOff {
+    grid-area: groupOff;
+}
+
+#rowOff {
+    grid-area: rowOff;
+}
+
+#groupOff>p,
+#rowOff>p {
+    display: inline-block;
+    text-align: center;
+}
+
 .options {
     display: grid;
+    margin: 5vw;
+
+    /* align-items: stretch; */
+    column-gap: 1em;
+    row-gap: 0.5em;
+
     grid-template-areas:
         "weekNum rowCycle groupCycle"
         "sepChar rowDur groupDur"
         "classT rowOff groupOff"
         "teachT fileUp subBtn";
+}
+
+
+.opt {
+    display: grid;
+    place-items: center;
+
+    /* border:rgb(111, 167, 185) solid 1px; */
+    /* padding: 1em; */
+}
+
+@media (min-width: 1020px) {
+    .options {
+        grid-template-areas:
+            "weekNum rowCycle rowDur rowOff"
+            "sepChar groupCycle groupDur groupOff"
+            "classT teachT fileUp subBtn";
+    }
+}
+
+@media (max-width: 420px) {
+
+    .options {
+        grid-template-areas:
+            "weekNum sepChar"
+            "classT teachT"
+            "rowDur groupDur"
+            "rowCycle groupCycle"
+            "rowOff groupOff"
+            "fileUp subBtn";
+    }
 }
