@@ -1,3 +1,8 @@
+# External files
+node_modules
+package.json
+package-lock.json
+
 # VScode files
 __pycache__
 .vscode
