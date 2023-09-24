@@ -1,7 +1,13 @@
 from flask import Flask, request
 from flask import render_template
+from werkzeug.utils import secure_filename
+import tools as processTools
+
+
+UPLOAD_FOLDER = r'/input'
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.route("/")
@@ -12,10 +18,19 @@ def index():
 @app.route('/process', methods=['POST'])  # type: ignore
 def success():
     if request.method == 'POST':
+        # Getting the configuration datas
         raw_data = request.form.to_dict()
         processData = toSettingsDict(raw_data)
 
-        return 'Data received: {}'.format(processData)
+        # Getting the template file:
+        file = request.files['fileUpload']
+        filename = secure_filename("input_file.txt")
+        file.save(r'./input/'+filename)
+
+        # Processing
+        startProcessing(r'./input/input_file.txt', processData)
+
+        return render_template("output.html")
 
 
 def toSettingsDict(inputDict: dict) -> dict:
@@ -36,3 +51,18 @@ def toSettingsDict(inputDict: dict) -> dict:
         if KEY not in outputDict:
             outputDict[KEY] = False
     return outputDict
+
+
+def startProcessing(fileLocation: str, config: dict):
+    rawList = processTools.file_readers(fileLocation,
+                                        divider=config["sepChar"])
+    sortList = processTools.sortingAlgo(config['weekNum'],
+                                        config['rowCycle'],
+                                        config["groupCycle"],
+                                        config["groupDur"],
+                                        config["rowDur"],
+                                        rawList, True, config['rowOff'],
+                                        config['groupOff'])
+    sortDict = processTools.rawListToDict(sortList)
+    processTools.write_html(sortDict, config['classT'], config['teachT'],
+                            r'/templates')

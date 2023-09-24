@@ -11,23 +11,6 @@ def saveData(groupingData: dict) -> None:
         f.write(json.dumps(groupingData))
 
 
-def readSettings() -> dict:
-    settingDict = {}
-    with open(r'input\settings.json', 'r', encoding="UTF-8") as f:
-        settingDict = json.loads(f.read())
-    return settingDict
-
-
-def readConfig() -> dict:
-    with open(r'input\internal_config.json', 'r') as f:
-        return json.loads(f.read())
-
-
-def writeConfig(internalData: dict) -> None:
-    with open(r'input\internal_config.json', 'w') as f:
-        f.write(json.dumps(internalData))
-
-
 # Convert from pure Text to Filterized List
 def file_readers(file_path: str, divider: str = " | ") -> list:
     output = []
@@ -42,7 +25,8 @@ def file_readers(file_path: str, divider: str = " | ") -> list:
             rowCounter += 1
             continue
         output[rowCounter].append(
-            list(map(lambda inStr: inStr.replace('\n', ''), extracted_str[lineID].split(divider))))
+            list(map(lambda inStr: inStr.replace('\n', ''),
+                     extracted_str[lineID].split(divider))))
 
     return output
 
@@ -143,9 +127,13 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
 
 
 def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
-               i=None) -> None:
+               fileLocation: str, i=None) -> None:
     outputStr = ""
-    HEAD_SECTION = r'<html><head><link rel="stylesheet" href="print.css"><link rel="stylesheet" media="print" href="print.css"></head><body class="grid">'
+    HEAD_SECTION = ('<html><head><link rel="stylesheet" type="text/css" '
+                    'href="{{ url_for(\'static\', filename=\'style.css\')}}">'
+                    '<link rel="stylesheet" type="text/css" '
+                    'href="{{ url_for(\'static\', filename=\'print.css\')}}">'
+                    '</head><body class="grid">')
     body = ""
     END_SECTION = r'</body></html>'
 
@@ -165,5 +153,6 @@ def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
             body += rf'<p class="cl">{classEntrance}</p></div>'
         body += r'</div>'
     outputStr = HEAD_SECTION + body + END_SECTION
-    with open(f'{"output" if i == None else i}.html', "w", encoding="UTF-8") as f_out:
+    with open(rf'.{fileLocation}/{"output" if i == None else i}.html', "w",
+              encoding="UTF-8") as f_out:
         f_out.write(outputStr)
