@@ -2,8 +2,8 @@
 In case you don't know how to use the standard version, you can use the **web version of ClassSorts** instead. This version is still in development, so some features is still in progress.
 
 ## Features not included yet
-- [] Save previous profile for continuous week cycling *(Cycle mode)*.
-- [] Add option to instant print button in the output file.
+- [ ] Save previous profile for continuous week cycling *(Cycle mode)*.
+- [ ] Add option to instant print button in the output file.
 - [X] Essential functionalities
 
 ## How to use?
