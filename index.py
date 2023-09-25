@@ -10,6 +10,7 @@ STATIC_FOLDER = r'/assets'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
 @app.route("/")
 def index():
     return render_template("main.html")
