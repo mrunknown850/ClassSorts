@@ -12,7 +12,8 @@ def saveData(groupingData: dict) -> None:
 
 
 # Convert from pure Text to Filterized List
-def file_readers(file_path: str, divider: str = " | ") -> list:
+def file_readers(file_path: str, divider: str = "|") -> list:
+    divider = " " + divider + " "
     output = []
     with open(file_path, "r", encoding="UTF-8") as f:
         extracted_str = f.readlines()
@@ -153,6 +154,6 @@ def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
             body += rf'<p class="cl">{classEntrance}</p></div>'
         body += r'</div>'
     outputStr = HEAD_SECTION + body + END_SECTION
-    with open(rf'.{fileLocation}/{"output" if i == None else i}.html', "w",
+    with open(rf'{fileLocation}/{"output" if i == None else i}.html', "w",
               encoding="UTF-8") as f_out:
         f_out.write(outputStr)

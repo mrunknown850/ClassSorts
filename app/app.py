@@ -65,4 +65,4 @@ def startProcessing(fileLocation: str, config: dict):
                                         config['groupOff'])
     sortDict = processTools.rawListToDict(sortList)
     processTools.write_html(sortDict, config['classT'], config['teachT'],
-                            r'/templates')
+                            r'./app/templates')
