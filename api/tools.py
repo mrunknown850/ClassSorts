@@ -134,6 +134,7 @@ def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
                     'href="{{ url_for(\'static\', filename=\'style.css\')}}">'
                     '<link rel="stylesheet" type="text/css" '
                     'href="{{ url_for(\'static\', filename=\'print.css\')}}">'
+                    '<title>Output | ClassSorts</title>'
                     '</head><body class="grid">')
     body = ""
     END_SECTION = r'</body></html>'

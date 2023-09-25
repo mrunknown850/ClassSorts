@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Homepage | ClassSorts</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
 </head>
@@ -14,7 +15,8 @@
         <h1>ClassSorts for Web</h1>
         <h3>by MrUnknown850</h3>
     </div>
-
+    
+    <h1 class="smallTitle"> - Settings (<a href="https://github.com/mrunknown850/ClassSorts/blob/web-server/.github/websiteGuide.md" target="_blank">More Info</a>) - </h1>
     <form action="\process" method="POST" enctype="multipart/form-data" class="options">
         <label class="file-upload" id="fileUp">
             <input type="file" name="fileUpload" id="uploadInput" required>
@@ -23,7 +25,7 @@
 
 
         <div class="opt" id="weekNum">
-            <p>Week Num:</p>
+            <p>Week Number:</p>
             <input name="weekNum" type="number" required>
         </div>
         <div class="opt" id="sepChar">
@@ -51,7 +53,7 @@
 
 
         <div class="opt" id="classT">
-            <p>Class's Door Title:</p>
+            <p>Class' Door Title:</p>
             <input type="text" pattern="[A-Za-z0-9]+" required name="classT">
         </div>
         <div class="opt" id="teachT">
