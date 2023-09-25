@@ -26,10 +26,10 @@ def success():
         # Getting the template file:
         file = request.files['fileUpload']
         filename = secure_filename("input_file.txt")
-        file.save(r'./client/'+filename)
+        file.save(r'/tmp/'+filename)
 
         # Processing
-        startProcessing(r'./client/input_file.txt', processData)
+        startProcessing(r'/tmp/input_file.txt', processData)
 
         return render_template("output.html")
 

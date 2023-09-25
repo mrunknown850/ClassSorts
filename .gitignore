@@ -16,5 +16,6 @@ ClassSorts.zip
 # Private test files
 output.html
 test.py
-client/input_file.txt
+tmp/input_file.txt
 templates/output.html
+.vercel
