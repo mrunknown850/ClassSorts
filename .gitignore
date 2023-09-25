@@ -16,5 +16,5 @@ ClassSorts.zip
 # Private test files
 output.html
 test.py
-input
+client/input_file.txt
 templates/output.html

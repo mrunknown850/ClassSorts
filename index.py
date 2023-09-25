@@ -1,14 +1,14 @@
 from flask import Flask, request
 from flask import render_template
 from werkzeug.utils import secure_filename
-import tools as processTools
+import api.tools as processTools
 
 
 UPLOAD_FOLDER = r'/input'
+STATIC_FOLDER = r'/assets'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 @app.route("/")
 def index():
@@ -25,10 +25,10 @@ def success():
         # Getting the template file:
         file = request.files['fileUpload']
         filename = secure_filename("input_file.txt")
-        file.save(r'./input/'+filename)
+        file.save(r'./client/'+filename)
 
         # Processing
-        startProcessing(r'./input/input_file.txt', processData)
+        startProcessing(r'./client/input_file.txt', processData)
 
         return render_template("output.html")
 
@@ -65,4 +65,4 @@ def startProcessing(fileLocation: str, config: dict):
                                         config['groupOff'])
     sortDict = processTools.rawListToDict(sortList)
     processTools.write_html(sortDict, config['classT'], config['teachT'],
-                            r'./app/templates')
+                            r'./templates')
