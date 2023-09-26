@@ -29,9 +29,9 @@ def success():
         file.save(r'/tmp/'+filename)
 
         # Processing
-        startProcessing(r'/tmp/input_file.txt', processData)
+        sortTbl = startProcessing(r'/tmp/input_file.txt', processData)
 
-        return render_template("output.html")
+        return render_template("output.html", tbl_table=sortTbl)
 
 
 def toSettingsDict(inputDict: dict) -> dict:
@@ -54,7 +54,7 @@ def toSettingsDict(inputDict: dict) -> dict:
     return outputDict
 
 
-def startProcessing(fileLocation: str, config: dict):
+def startProcessing(fileLocation: str, config: dict) -> dict:
     rawList = processTools.file_readers(fileLocation,
                                         divider=config["sepChar"])
     sortList = processTools.sortingAlgo(config['weekNum'],
@@ -65,5 +65,4 @@ def startProcessing(fileLocation: str, config: dict):
                                         rawList, True, config['rowOff'],
                                         config['groupOff'])
     sortDict = processTools.rawListToDict(sortList)
-    processTools.write_html(sortDict, config['classT'], config['teachT'],
-                            r'./templates')
+    return sortDict

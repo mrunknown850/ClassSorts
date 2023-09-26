@@ -155,6 +155,7 @@ def write_html(tbl_arrange: dict, classEntrance: str, teachersTable: str,
             body += rf'<p class="cl">{classEntrance}</p></div>'
         body += r'</div>'
     outputStr = HEAD_SECTION + body + END_SECTION
+
     with open(rf'{fileLocation}/{"output" if i == None else i}.html', "w",
               encoding="UTF-8") as f_out:
         f_out.write(outputStr)
