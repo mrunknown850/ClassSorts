@@ -1,0 +1,21 @@
+* {
+    font-family: "Open Sans";
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-weight: lighter;
+    font-size: 2.5em;
+}
+
+h3 {
+    text-align: center;
+}
+
+.header {
+    background-color: lightblue;
+    padding: 5em 5em;
+    margin-bottom: 2.5em;
+}

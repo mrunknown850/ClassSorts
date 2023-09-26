@@ -10,14 +10,18 @@ STATIC_FOLDER = r'/assets'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+outputTbl = {}
+
 
 @app.route("/")
 def index():
     return render_template("main.html")
 
 
-@app.route('/process', methods=['POST'])  # type: ignore
+@app.route('/print', methods=['POST'])  # type: ignore
 def success():
+    global outputTbl
+
     if request.method == 'POST':
         # Getting the configuration datas
         raw_data = request.form.to_dict()
@@ -29,9 +33,16 @@ def success():
         file.save(r'/tmp/'+filename)
 
         # Processing
-        sortTbl = startProcessing(r'/tmp/input_file.txt', processData)
+        outputTbl = startProcessing(r'/tmp/input_file.txt', processData)
 
-        return render_template("output.html", tbl_table=sortTbl)
+        return render_template("print_output.html", tbl_table=outputTbl,
+                               isRedirected=False)
+
+
+@app.route('/raw-output')
+def rawOutput():
+    return render_template("output.html", tbl_table=outputTbl,
+                           isRedirected=True)
 
 
 def toSettingsDict(inputDict: dict) -> dict:

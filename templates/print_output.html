@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='output.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='print.css')}}">
+    <title> Printing | ClassSorts</title>
+</head>
+
+<div class="header">
+    <h1>Result</h1>
+    <a href="\raw-output">
+        <h3>Click here for printing</h3>
+    </a>
+</div>
+
+{% include "output.html" %}
+{% block js %}
+{% endblock %}
+
+</html>
