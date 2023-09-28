@@ -14,7 +14,7 @@ STATIC_FOLDER = r'/assets'
 
 app = Flask(__name__)
 
-load_dotenv(".env")
+# load_dotenv(".env")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
