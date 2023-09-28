@@ -88,23 +88,27 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
             if weekCycle == 1:
                 continue
             # Perform rowShift
-            if weekCount % rowShiftDuration == 0 and not rowOffset:
+            if (rowShiftDuration != 0 and weekCount % rowShiftDuration == 0
+                    and not rowOffset):
                 tempList = (outputList[-rowShiftCycle:]
                             + outputList[:-rowShiftCycle])
                 outputList = tempList.copy()
-            elif weekCount % rowShiftDuration == 1 and rowOffset:
+            elif (rowShiftDuration != 0 and weekCount % rowShiftDuration == 1
+                  and rowOffset and rowShiftDuration != 0):
                 tempList = (outputList[-rowShiftCycle:]
                             + outputList[:-rowShiftCycle])
                 outputList = tempList.copy()
 
             # Perform groupShift
-            if weekCount % groupShiftDuration == 0 and not groupOffset:
+            if (groupShiftDuration != 0 and weekCount % groupShiftDuration == 0
+                    and not groupOffset):
                 tempList = []
                 for row in outputList:
                     tempList.append(row[groupShiftCycle:]
                                     + row[:groupShiftCycle])
                 outputList = tempList.copy()
-            elif weekCount % groupShiftDuration == 1 and groupOffset:
+            elif (groupShiftDuration != 0 and weekCount % groupShiftDuration ==
+                  1 and groupOffset):
                 tempList = []
                 for row in outputList:
                     tempList.append(row[groupShiftCycle:]
@@ -112,13 +116,15 @@ def sortingAlgo(weekCount: int, rowShiftCycle: int, groupShiftCycle: int,
                 outputList = tempList.copy()
         # return outputList
     else:
-        if weekCount % rowShiftDuration == 0:
+        if (rowShiftDuration != 0 and weekCount % rowShiftDuration == 0
+                and weekCount != 0):
             tempList = (outputList[-rowShiftCycle:]
                         + outputList[:-rowShiftCycle])
             outputList = tempList.copy()
 
             # Perform groupShift
-        if weekCount % groupShiftDuration == 0:
+        if (groupShiftDuration != 0 and weekCount % groupShiftDuration == 0
+                and weekCount != 0):
             tempList = []
             for row in outputList:
                 tempList.append(row[groupShiftCycle:]

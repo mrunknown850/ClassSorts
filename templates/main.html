@@ -15,8 +15,10 @@
         <h1>ClassSorts for Web</h1>
         <h3>by MrUnknown850</h3>
     </div>
-    
-    <h1 class="smallTitle"> - Settings (<a href="https://github.com/mrunknown850/ClassSorts/blob/web-server/.github/websiteGuide.md" target="_blank">More Info</a>) - </h1>
+
+    <h1 class="smallTitle"> - Settings (<a
+            href="https://github.com/mrunknown850/ClassSorts/blob/web-server/.github/websiteGuide.md"
+            target="_blank">More Info</a>) - </h1>
     <form action="\print" method="POST" enctype="multipart/form-data" class="options">
         <label class="file-upload" id="fileUp">
             <input type="file" name="fileUpload" id="uploadInput" required>
@@ -54,11 +56,11 @@
 
         <div class="opt" id="classT">
             <p>Class' Door Title:</p>
-            <input type="text" pattern="[A-Za-z0-9]+" required name="classT">
+            <input type="text" required name="classT">
         </div>
         <div class="opt" id="teachT">
             <p>Teacher's Table Title:</p>
-            <input type="text" pattern="[A-Za-z0-9]+" required name="teachT">
+            <input type="text" required name="teachT">
         </div>
 
         <label class="opt" id="rowOff">
@@ -70,22 +72,40 @@
             <input type="checkbox" name="groupOff">
         </label>
 
+        <label id="cookie">
+            <p>Save cookies?</p>
+            <input type="checkbox" name="cookie">
+        </label>
+
+        <label id="groupName">
+            <p>Groups name</p>
+            <input type="text" required name="groupName">
+        </label>
         <div class="opt" id="subBtn">
             <input type="submit" id="subBtnIn">
         </div>
     </form>
-    
+
+    <!-- <header></header> -->
+    {% if isCookie %}
+    <div>
+        <a href="/print" id="useCookie"">
+            Click here to cycle through saved cookie
+        </a>
+    </div>
+    {% endif %}
+
     <script>
         var uploadInput = document.getElementById("uploadInput")
         var label = document.getElementById("fileLabel")
-        uploadInput.addEventListener("change", function() {
+        uploadInput.addEventListener("change", function () {
             var fileName = this.value.split("\\").pop();
 
             label.textContent = fileName
         })
 
         var submitBtn = document.getElementById("subBtnIn")
-        submitBtn.addEventListener("click", function(e) {
+        submitBtn.addEventListener("click", function (e) {
             if (uploadInput.value == "") {
                 alert("Please upload a file")
                 e.preventDefault();

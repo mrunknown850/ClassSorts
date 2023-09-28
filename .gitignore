@@ -19,3 +19,4 @@ test.py
 tmp/input_file.txt
 templates/output.html
 .vercel
+.env

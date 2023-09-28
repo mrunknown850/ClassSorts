@@ -43,7 +43,6 @@ input[type=submit] {
 input[type=submit]:hover {
     background: #9c9c9c;
 }
-
 input[type=file] {
     display: none;
 }
@@ -134,9 +133,43 @@ input[type=text] {
     text-align: center;
 }
 
+#cookie {
+    display: grid;
+    align-items: center;
+    grid-area: cookie;
+}
+
+#groupName {
+    grid-area: groupName;
+    display: grid;
+    justify-content: center;
+}
+
+#groupName>p {
+    text-align: center;
+}
+
+#cookie>p {
+    text-align: center;
+}
+
+#useCookie {
+    display: block;
+
+    width: 20rem;
+    height: 2rem;
+    /* align-items: center; */
+}
+
+div:has(> #useCookie) {
+    display: grid;
+    justify-content: center;
+}
+
 .options {
     display: grid;
     margin: 5vw;
+    margin-bottom: 1vw;
 
     /* align-items: stretch; */
     column-gap: 1em;
@@ -146,7 +179,8 @@ input[type=text] {
         "weekNum rowCycle groupCycle"
         "sepChar rowDur groupDur"
         "classT rowOff groupOff"
-        "teachT fileUp subBtn";
+        "teachT groupName fileUp"
+        "cookie subBtn subBtn";
 }
 
 
@@ -163,7 +197,8 @@ input[type=text] {
         grid-template-areas:
             "weekNum rowCycle rowDur rowOff"
             "sepChar groupCycle groupDur groupOff"
-            "classT teachT fileUp subBtn";
+            "classT teachT groupName fileUp"
+            "cookie cookie subBtn subBtn";
     }
 }
 
@@ -176,6 +211,7 @@ input[type=text] {
             "rowDur groupDur"
             "rowCycle groupCycle"
             "rowOff groupOff"
-            "fileUp subBtn";
+            "fileUp groupName"
+            "cookie subBtn";
     }
 }

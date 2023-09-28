@@ -7,6 +7,17 @@
     font-family: 'Open Sans';
 }
 
+.bgv, .cl {
+    border-top: 1px solid!important;
+    border-right: 1px solid!important;
+    border-left: 1px solid!important;
+
+    padding: 0.5em;
+    /* font-weight: ; */
+    text-align: center;
+    font-size: 3.5vh;
+}
+
 
 /* ROWS */
 .grid {
@@ -59,24 +70,3 @@
     /* border: 1px solid; */
 }
 
-.bgv {
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-left: 1px solid;
-
-    padding: 0.5em;
-    /* font-weight: ; */
-    text-align: center;
-    font-size: 2.5vh;
-}
-
-.cl {
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-left: 1px solid;
-
-    padding: 0.5em;
-    /* font-weight: ; */
-    text-align: center;
-    font-size: 2.5vh;
-}

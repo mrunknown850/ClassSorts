@@ -2,14 +2,18 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='output.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='print.css')}}">
     <title> Printing | ClassSorts</title>
 </head>
 
 <div class="header">
-    <h1>Result</h1>
+    <h1>Result - Week {{weekNum}}</h1>
     <a href="\raw-output">
         <h3>Click here for printing</h3>
+    </a>
+    <a href="\new-url">
+        <h3>Generate a link</h3>
     </a>
 </div>
 
