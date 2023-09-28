@@ -14,7 +14,6 @@ ClassSorts.zip
 .python-version
 
 # Private test files
-output.html
 test.py
 tmp/input_file.txt
 templates/output.html

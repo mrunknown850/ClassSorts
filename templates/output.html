@@ -1,0 +1,58 @@
+{% block header %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='print.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+
+    <title>Output | ClassSorts</title>
+    {% if isRedirected %}
+    <script>
+        window.onload = function() {
+            window.print()
+        }
+    </script>
+    {% endif %}
+
+</head>
+
+
+<body>
+    {% endblock %}
+    <div class="grid">
+        <!-- ROW LAYER -->
+        {% for key, row in tbl_table.items() %}
+        <div>
+            <div> {{groupName}} {{key}} </div>
+            <!-- TABLE LAYER -->
+            {% for seatSet in row.values() %}
+            <div>
+                {% for seat in seatSet.values() %}
+                <div> {{seat}} </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            {% if key == tbl_table.keys()|last %}
+            <div class="bgv">{{teachT}}</div>
+            {% endif %}
+            {% if key == tbl_table.keys()|first %}
+                    <div class="cl">{{classT}}</div>
+            {% endif %}
+            
+            
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+
+    {% block footer %}
+</body>
+
+
+</html>
+{% endblock %}
