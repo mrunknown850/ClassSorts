@@ -131,9 +131,9 @@ def newDatabase():
     insertionDict = {
         "_id": id,
         "classPos": json.dumps(outputTbl),
-        "classT": globConfig["classT"],
-        "teachT": globConfig["teachT"],
-        "groupName": globConfig["groupName"]
+        "classT": str(globConfig["classT"]),
+        "teachT": str(globConfig["teachT"]),
+        "groupName": str(globConfig["groupName"])
     }
 
     collection.insert_one(insertionDict)
