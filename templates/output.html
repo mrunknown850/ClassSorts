@@ -47,7 +47,14 @@
 
         {% endfor %}
     </div>
-
+    
+    {% if isLinked %}
+        <div class="dontprint">
+            <h1>QR Code for this page...</h1>
+            <img src="{{ qrcode(request.base_url) }}">
+        </div>
+    {% endif %}
+    
 
 
     {% block footer %}

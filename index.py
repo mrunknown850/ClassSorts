@@ -3,7 +3,7 @@ from flask import render_template, redirect
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from werkzeug.utils import secure_filename
-from dotenv import load_dotenv
+from flask_qrcode import QRcode
 import api.tools as processTools
 import json
 import os
@@ -17,6 +17,8 @@ app = Flask(__name__)
 # load_dotenv(".env")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+
+qrgen = QRcode(app)
 
 client = MongoClient(app.config["MONGO_URI"])
 databases = client["saved_cycle_data"]
@@ -105,7 +107,7 @@ def rawOutput():
                            isRedirected=True,
                            groupName=globConfig["groupName"],
                            teachT=globConfig["teachT"],
-                           classT=globConfig["classT"])
+                           classT=globConfig["classT"],)
 
 
 @app.route('/database/<uuid>')
@@ -119,7 +121,8 @@ def openDatabase(uuid):
                            isRedirected=False,
                            groupName=returned_data["groupName"],
                            teachT=returned_data["teachT"],
-                           classT=returned_data["classT"])
+                           classT=returned_data["classT"],
+                           isLinked=True)
 
 
 @app.route('/new-url/')

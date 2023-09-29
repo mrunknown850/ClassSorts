@@ -3,6 +3,26 @@
     page-orientation: landscape;
 }
 
+@media print {
+    .dontprint {
+        display: none;
+    }
+}
+
+.dontprint {
+    text-align: center;
+}
+
+.dontprint>h1{
+    border-top: solid 1px black;
+    padding: 0.75em;
+    margin-top: 10em;
+}
+
+.dontprint>img{
+    margin-bottom: 5em;
+}
+
 * {
     font-family: 'Open Sans';
 }
