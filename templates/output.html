@@ -25,7 +25,7 @@
         <!-- ROW LAYER -->
         {% for key, row in tbl_table.items() %}
         <div>
-            <div> {{groupName}} {{key}} </div>
+            <div> {{groupName}} {{key|int + 1}} </div>
             <!-- TABLE LAYER -->
             {% for seatSet in row.values() %}
             <div>
